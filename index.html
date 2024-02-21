@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 15px;
+            background-color: dodgerblue;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: royalblue;
+        }
+        .student-info {
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Information</h1>
+
+    <label for="studentID">Student ID:</label>
+    <input type="text" id="studentID">
+
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName">
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob">
+
+    <label for="class">Class:</label>
+    <input type="text" id="class">
+
+    <label for="gpa">GPA:</label>
+    <input type="number" step="0.01" id="gpa">
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <div id="studentList"></div>
+
+    <script>
+        var students = [];
+
+        function addStudent() {
+            var studentID = document.getElementById("studentID").value;
+            var fullName = document.getElementById("fullName").value;
+            var dob = document.getElementById("dob").value;
+            var studentClass = document.getElementById("class").value;
+            var gpa = document.getElementById("gpa").value;
+
+            var student = {
+                studentID: studentID,
+                fullName: fullName,
+                dob: dob,
+                studentClass: studentClass,
+                gpa: gpa
+            };
+
+            students.push(student);
+            displayStudents();
+        }
+
+        function displayStudents() {
+            var studentList = document.getElementById("studentList");
+            studentList.innerHTML = "";
+            students.forEach(function(student) {
+                var studentDiv = document.createElement("div");
+                studentDiv.classList.add("student-info");
+                studentDiv.innerHTML = "<strong>Student ID:</strong> " + student.studentID +
+                                        "<br><strong>Full Name:</strong> " + student.fullName +
+                                        "<br><strong>Date of Birth:</strong> " + student.dob +
+                                        "<br><strong>Class:</strong> " + student.studentClass +
+                                        "<br><strong>GPA:</strong> " + student.gpa + "<br><br>";
+                studentList.appendChild(studentDiv);
+            });
+        }
+    </script>
+</body>
+</html>
